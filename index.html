@@ -41,7 +41,7 @@
           { "name": "Thé aux pignons", "price": 6.5, "description": "Une touche de luxe dans votre tasse avec des pignons croquants." }
         ]
       },
-      "Fresh Drinks": {
+      "Cold Drinks": {
         "items": [
           { "name": "Iced Coffee", "price": 4, "description": "Café glacé rafraîchissant, parfait pour les journées ensoleillées." },
           { "name": "Ice Latte", "price": 4.5, "description": "Alliance parfaite du lait froid et du café espresso." },
@@ -55,7 +55,7 @@
           { "name": "Soda", "price": 3, "description": "Coca, Fanta ou Sprite bien frais selon votre envie." }
         ]
       },
-      "Suppléments": {
+      "Suppléments  (Drinks)": {
         "items": [
           { "name": "Lait concentré", "price": 1.5, "description": "Ajoutez une touche sucrée et crémeuse à votre boisson." },
           { "name": "Arôme", "price": 1.5, "description": "Choisissez entre vanille, caramel ou noisette." }
@@ -122,45 +122,53 @@
         section.className = 'menu-section bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl';
 
         section.innerHTML = `
-          <div class="bg-rose-600 text-white px-6 py-4 flex justify-between items-center">
-            <h2 class="text-2xl font-serif font-bold">${title}</h2>
-            <i data-feather="chevron-down" class="w-6 h-6 opacity-80 transition-transform"></i>
-          </div>
-        `;
+        <div class="bg-rose-600 text-white px-6 py-4 flex justify-between items-center cursor-pointer header">
+          <h2 class="text-2xl font-serif font-bold">${title}</h2>
+          <i data-feather="chevron-down" class="w-6 h-6 opacity-80 transition-transform"></i>
+        </div>
+      `;
 
         const content = document.createElement('div');
-        content.className = 'px-6 py-5';
+        content.className = 'px-6 py-5 content hidden'; // Add 'hidden' initially to collapse sections
 
         content.innerHTML = data.items.map(i => {
           let priceHTML = '';
           if (i.prices && i.prices.length === 2) {
             priceHTML = `
-              <div class="flex gap-4 text-right text-rose-700">
-                <div class="flex flex-col items-end">
-                  <span class="text-lg font-semibold">${i.prices[0]} DT</span>
-                  <span class="text-xs text-rose-500">Petite</span>
-                </div>
-                <div class="flex flex-col items-end">
-                  <span class="text-lg font-semibold">${i.prices[1]} DT</span>
-                  <span class="text-xs text-rose-500">Grande</span>
-                </div>
-              </div>`;
+            <div class="flex gap-4 text-right text-rose-700">
+              <div class="flex flex-col items-end">
+                <span class="text-lg font-semibold">${i.prices[0]} DT</span>
+                <span class="text-xs text-rose-500">Petite</span>
+              </div>
+              <div class="flex flex-col items-end">
+                <span class="text-lg font-semibold">${i.prices[1]} DT</span>
+                <span class="text-xs text-rose-500">Grande</span>
+              </div>
+            </div>`;
           } else {
             priceHTML = `<span class="text-lg font-semibold text-rose-600">${i.price} DT</span>`;
           }
 
           return `
-            <div class="py-4 border-b border-rose-100 last:border-b-0">
-              <div class="flex justify-between items-center">
-                <h3 class="text-xl font-medium text-rose-900">${i.name}</h3>
-                ${priceHTML}
-              </div>
-              <p class="text-rose-700 mt-1 text-sm">${i.description || ''}</p>
-            </div>`;
+          <div class="py-4 border-b border-rose-100 last:border-b-0">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xl font-medium text-rose-900">${i.name}</h3>
+              ${priceHTML}
+            </div>
+            <p class="text-rose-700 mt-1 text-sm">${i.description || ''}</p>
+          </div>`;
         }).join('');
 
         section.appendChild(content);
         container.appendChild(section);
+
+        // Add click event listener to the header
+        const header = section.querySelector('.header');
+        const chevron = header.querySelector('i');
+        header.addEventListener('click', () => {
+          content.classList.toggle('hidden');
+          chevron.classList.toggle('rotate-180'); // Rotate chevron when toggled
+        });
       }
       feather.replace();
     });
