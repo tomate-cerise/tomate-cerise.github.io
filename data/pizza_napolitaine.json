@@ -1,0 +1,19 @@
+{
+    "items": [
+        {
+            "name": "Margherita",
+            "prices": ["14.000"],
+            "description": "Tomate, mozzarella, basilic"
+        },
+        {
+            "name": "Marinara",
+            "prices": ["15.500"],
+            "description": "Tomate, ail, origan, anchois"
+        },
+        {
+            "name": "Quattro Formaggi",
+            "prices": ["17.000", "19.000"],
+            "description": "Mozzarella, gorgonzola, parmesan, ricotta"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "items": [
+        {
+            "name": "La Méditerranéenne",
+            "prices": ["12.500"],
+            "description": "Thon, tomate, olive, câpres"
+        },
+        {
+            "name": "La Provençale",
+            "prices": ["10.500"],
+            "description": "Courgette, aubergine, poivron, mozzarella"
+        },
+        {
+            "name": "La Tunisienne",
+            "prices": ["11.000", "13.000"],
+            "description": "Merguez, œuf, harissa, fromage"
+        }
+    ]
+}

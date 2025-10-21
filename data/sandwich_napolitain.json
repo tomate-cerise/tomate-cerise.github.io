@@ -1,0 +1,14 @@
+{
+    "items": [
+        {
+            "name": "Classico",
+            "prices": ["8.500"],
+            "description": "Jambon, mozzarella, tomate"
+        },
+        {
+            "name": "Vegetariano",
+            "prices": ["7.500"],
+            "description": "Aubergine, poivron, mozzarella"
+        }
+    ]
+}
