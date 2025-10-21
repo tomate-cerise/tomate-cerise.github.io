@@ -1,106 +1,170 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomate-Cerise | Crêperie Méditerranéenne</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .font-cursive {
-                font-family: 'Brush Script MT', cursive;
-            }
-            .menu-item-border {
-                border-bottom: 1px dashed #e2e8f0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tomate-Cerise</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-cream-50 text-red-900">
-    <custom-navbar></custom-navbar>
 
-    <main class="container mx-auto px-4 py-8 max-w-4xl">
-        <!-- Hero Section -->
-        <section class="text-center mb-12">
-            <div class="flex justify-center mb-4">
-                <img src="http://static.photos/red/320x240/42" alt="Tomate-Cerise Logo" class="w-24 h-24 rounded-full object-cover border-4 border-red-200 shadow-md">
-            </div>
-            <h1 class="text-4xl md:text-5xl font-bold mb-2 font-serif">Tomate-Cerise</h1>
-            <p class="text-xl text-red-700 italic">Crêperie Méditerranéenne</p>
-        </section>
+<body class="bg-amber-50 text-rose-900 font-sans">
+  <main class="container mx-auto px-6 py-12 max-w-5xl">
+    <section class="text-center mb-16">
+      <div class="flex justify-center mb-6">
+        <img src="images/logo.png" alt="Tomate-Cerise Logo" class="h-16 w-auto" />
+      </div>
+      <h1 class="text-6xl font-serif font-extrabold text-rose-700 drop-shadow-lg">Tomate-Cerise</h1>
+      <p class="text-lg text-rose-600 mt-2">Savourez l'authenticité - À très bientôt !</p>
+    </section>
 
-        <!-- Menu Sections -->
-        <div class="space-y-12" id="menu-sections">
-            <!-- Menu sections will be dynamically inserted here -->
-        </div>
-    </main>
+    <div id="menu-sections" class="space-y-8"></div>
+  </main>
 
-    <custom-footer></custom-footer>
+  <script>
+    const localData = {
+      "Hot Drinks": {
+        "items": [
+          { "name": "Espresso", "price": 3, "description": "Un café corsé à l’arôme intense, parfait pour un coup de boost." },
+          { "name": "Capucin", "price": 3.2, "description": "Espresso onctueux coiffé d’une mousse de lait légère." },
+          { "name": "Direct", "price": 3.5, "description": "Un espresso double pour les vrais amateurs de café fort." },
+          { "name": "Américain", "price": 4, "description": "Un café allongé doux et équilibré, idéal pour une pause prolongée." },
+          { "name": "Nescafé", "price": 4, "description": "Classique et réconfortant, pour un goût familier et doux." },
+          { "name": "Chocolat au lait", "price": 4, "description": "Un chocolat crémeux préparé avec du lait chaud entier." },
+          { "name": "Chocolat chaud", "price": 6, "description": "Riche et fondant, le réconfort absolu pour les journées fraîches." },
+          { "name": "Macchiato", "price": 5, "description": "Un espresso tacheté de lait pour une touche de douceur." },
+          { "name": "Thé vert (Kyufi)", "price": 3, "description": "Infusion légère et rafraîchissante au parfum oriental." },
+          { "name": "Thé aux amandes", "price": 5, "description": "Délicieux thé parfumé, adouci par la saveur des amandes." },
+          { "name": "Thé aux pignons", "price": 6.5, "description": "Une touche de luxe dans votre tasse avec des pignons croquants." }
+        ]
+      },
+      "Fresh Drinks": {
+        "items": [
+          { "name": "Iced Coffee", "price": 4, "description": "Café glacé rafraîchissant, parfait pour les journées ensoleillées." },
+          { "name": "Ice Latte", "price": 4.5, "description": "Alliance parfaite du lait froid et du café espresso." },
+          { "name": "Iced Tea", "price": 4, "description": "Thé glacé maison légèrement sucré, servi très frais." },
+          { "name": "Milkshake Nutella", "price": 8, "description": "Gourmandise froide et crémeuse au goût intense de Nutella." },
+          { "name": "Affogato", "price": 6, "description": "Glace vanille fondue sous un espresso chaud." },
+          { "name": "Affogato Nutella", "price": 8, "description": "Version encore plus gourmande avec un filet de Nutella fondant." },
+          { "name": "Affogato fruits secs", "price": 8.5, "description": "Affogato enrichi de noix et amandes croquantes." },
+          { "name": "Eau 1L", "price": 2.5, "description": "Eau minérale fraîche en bouteille de 1L." },
+          { "name": "Eau 0.5L", "price": 1.5, "description": "Format pratique pour une petite soif." },
+          { "name": "Soda", "price": 3, "description": "Coca, Fanta ou Sprite bien frais selon votre envie." }
+        ]
+      },
+      "Suppléments": {
+        "items": [
+          { "name": "Lait concentré", "price": 1.5, "description": "Ajoutez une touche sucrée et crémeuse à votre boisson." },
+          { "name": "Arôme", "price": 1.5, "description": "Choisissez entre vanille, caramel ou noisette." }
+        ]
+      },
+      "Crêpes Sucrées": {
+        "items": [
+          { "name": "Nutella", "price": 9.8, "description": "Crêpe moelleuse nappée généreusement de Nutella fondant." },
+          { "name": "Nutella banane", "price": 13.8, "description": "Alliance parfaite entre chocolat fondant et banane fraîche." },
+          { "name": "Nutella fruits secs", "price": 14.5, "description": "Crêpe gourmande aux éclats croquants d’amandes et noisettes." }
+        ]
+      },
+      "Crêpes Salées": {
+        "items": [
+          { "name": "Classique jambon", "price": 8.8, "description": "Crêpe fine garnie de jambon et fromage fondant." },
+          { "name": "Classique thon", "price": 10.8, "description": "Thon assaisonné et fromage, un grand classique salé." },
+          { "name": "Tunisienne", "price": 11.8, "description": "Épicée et généreuse, à la saveur du sud." },
+          { "name": "Extra jambon", "price": 11.8, "description": "Plus de fromage, plus de goût, plus de plaisir !" },
+          { "name": "Extra thon", "price": 13.8, "description": "Version riche en garniture pour les amateurs de thon." },
+          { "name": "Chorizo", "price": 13.8, "description": "Goût relevé et fondant, un plaisir ibérique." },
+          { "name": "Chicken suprême", "price": 13.8, "description": "Poulet tendre, crème onctueuse et fromage fondant." },
+          { "name": "Turbo", "price": 14.5, "description": "Explosion de saveurs : jambon, thon, fromage et épices." }
+        ]
+      },
+      "Sandwich Napolitain": {
+        "items": [
+          { "name": "Jambon", "price": 9, "description": "Pain doré, jambon tendre et fromage coulant." },
+          { "name": "Thon", "price": 10.5, "description": "Sandwich généreux au thon et sauce maison." },
+          { "name": "Poulet grillé", "price": 10.5, "description": "Poulet mariné et grillé à la perfection." },
+          { "name": "Poulet pané", "price": 11.5, "description": "Croustillant à l’extérieur, fondant à l’intérieur." },
+          { "name": "Chorizo", "price": 12, "description": "Épicé et savoureux, un vrai régal ibérique." },
+          { "name": "Poulet à la crème", "price": 13, "description": "Poulet tendre nappé de sauce crémeuse." },
+          { "name": "Mexicain", "price": 13, "description": "Goût relevé et piquant avec sauce épicée." },
+          { "name": "Crevette grillée", "price": 14.5, "description": "Crevettes grillées et assaisonnées façon méditerranéenne." },
+          { "name": "Crevette panée", "price": 15, "description": "Croustillantes et dorées, servies avec sauce maison." },
+          { "name": "Crevette à la crème", "price": 16, "description": "Version onctueuse avec sauce crème légère." },
+          { "name": "Taille XL", "price": 5, "description": "Ajoutez 5 DT pour un sandwich encore plus copieux !" }
+        ]
+      },
+      "Pizza Napolitaine": {
+        "items": [
+          { "name": "Marguerite", "prices": [10, 15], "description": "Tomate, mozzarella et basilic – la reine des pizzas." },
+          { "name": "Jambon", "prices": [11, 16], "description": "Classique et fondante avec jambon et fromage." },
+          { "name": "Chorizo", "prices": [12, 16], "description": "Piquante et savoureuse, pour les amateurs d’épices." },
+          { "name": "Thon", "price": 13, "description": "Pizza riche au thon, câpres et olives noires." },
+          { "name": "Poulet pesto", "price": 18, "description": "Poulet grillé et sauce pesto maison parfumée." },
+          { "name": "4 fromages", "price": 22, "description": "Un mélange fondant de quatre fromages italiens." },
+          { "name": "Mexicaine", "price": 19, "description": "Épicée, généreuse et pleine de caractère." },
+          { "name": "Crevette", "price": 21, "description": "Délicieuse pizza marine aux crevettes grillées." }
+        ]
+      },
+      "Suppléments (Sandwich)": {
+        "items": [
+          { "name": "Sauce pesto", "price": 2, "description": "Ajoutez une touche italienne parfumée." },
+          { "name": "Gruyère", "price": 2, "description": "Fromage fondant pour plus de plaisir." }
+        ]
+      }
+    };
 
-    <script src="components/navbar.js"></script>
-    <script src="components/footer.js"></script>
-    <script src="script.js"></script>
-    <script>
-        feather.replace();
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cream: {
-                            50: '#fffaf0',
-                            100: '#fff5e6',
-                        },
-                        red: {
-                            600: '#c53030',
-                            700: '#9b2c2c',
-                            900: '#63171b',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('menu-sections');
+      for (const [title, data] of Object.entries(localData)) {
+        const section = document.createElement('section');
+        section.className = 'menu-section bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl';
+
+        section.innerHTML = `
+          <div class="bg-rose-600 text-white px-6 py-4 flex justify-between items-center">
+            <h2 class="text-2xl font-serif font-bold">${title}</h2>
+            <i data-feather="chevron-down" class="w-6 h-6 opacity-80 transition-transform"></i>
+          </div>
+        `;
+
+        const content = document.createElement('div');
+        content.className = 'px-6 py-5';
+
+        content.innerHTML = data.items.map(i => {
+          let priceHTML = '';
+          if (i.prices && i.prices.length === 2) {
+            priceHTML = `
+              <div class="flex gap-4 text-right text-rose-700">
+                <div class="flex flex-col items-end">
+                  <span class="text-lg font-semibold">${i.prices[0]} DT</span>
+                  <span class="text-xs text-rose-500">Petite</span>
+                </div>
+                <div class="flex flex-col items-end">
+                  <span class="text-lg font-semibold">${i.prices[1]} DT</span>
+                  <span class="text-xs text-rose-500">Grande</span>
+                </div>
+              </div>`;
+          } else {
+            priceHTML = `<span class="text-lg font-semibold text-rose-600">${i.price} DT</span>`;
+          }
+
+          return `
+            <div class="py-4 border-b border-rose-100 last:border-b-0">
+              <div class="flex justify-between items-center">
+                <h3 class="text-xl font-medium text-rose-900">${i.name}</h3>
+                ${priceHTML}
+              </div>
+              <p class="text-rose-700 mt-1 text-sm">${i.description || ''}</p>
+            </div>`;
+        }).join('');
+
+        section.appendChild(content);
+        container.appendChild(section);
+      }
+      feather.replace();
+    });
+  </script>
 </body>
+
 </html>
