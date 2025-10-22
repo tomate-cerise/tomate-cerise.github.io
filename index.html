@@ -11,29 +11,39 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="bg-amber-50 text-rose-900 font-sans">
+<body class="bg-[#fffaf5] text-[#5c1c1c] font-sans">
   <main class="container mx-auto px-6 py-12 max-w-5xl">
+    <!-- Header -->
     <section class="text-center mb-16">
-      <div class="flex justify-center mb-6">
-        <img src="images/logo.png" alt="Tomate-Cerise Logo" class="h-16 w-auto" />
+      <div class="flex justify-center mb-4">
+        <img src="images/logo.png" alt="Tomate-Cerise Logo" class="h-20 w-auto drop-shadow-md" />
       </div>
-      <h1 class="text-6xl font-serif font-extrabold text-rose-700 drop-shadow-lg">Tomate-Cerise</h1>
-      <p class="text-lg text-rose-600 mt-2">Savourez l'authenticité !</p>
+      <h1 class="text-6xl font-serif font-extrabold text-[#b51a1a] tracking-wide drop-shadow">
+        Tomate-Cerise
+      </h1>
+      <p class="text-lg text-[#b23a3a] mt-2 italic">Savourez l'authenticité !</p>
     </section>
 
+    <!-- Dynamic Menu Sections -->
     <div id="menu-sections" class="space-y-8"></div>
+
+    <!-- Footer -->
+    <footer class="text-center text-[#8a3a3a] mt-16">
+      <p class="text-sm font-medium">Merci de votre visite !</p>
+      <p class="text-sm">À très bientôt chez <span class="font-bold text-[#b51a1a]">Tomate-Cerise 🍅</span></p>
+    </footer>
   </main>
 
   <script>
     const localData = {
       "Hot Drinks": {
         "items": [
-          { "name": "Espresso", "price": 3, "description": "Un café corsé à l’arôme intense, parfait pour un coup de boost." },
-          { "name": "Capucin", "price": 3.2, "description": "Espresso onctueux coiffé d’une mousse de lait légère." },
-          { "name": "Direct", "price": 3.5, "description": "Un espresso double pour les vrais amateurs de café fort." },
-          { "name": "Américain", "price": 4, "description": "Un café allongé doux et équilibré, idéal pour une pause prolongée." },
-          { "name": "Nescafé", "price": 4, "description": "Classique et réconfortant, pour un goût familier et doux." },
-          { "name": "Chocolat au lait", "price": 4, "description": "Un chocolat crémeux préparé avec du lait chaud entier." },
+          { "name": "Espresso", "price": 2.8, "description": "Un café corsé à l’arôme intense, parfait pour un coup de boost." },
+          { "name": "Capucin", "price": 2.9, "description": "Espresso onctueux coiffé d’une mousse de lait légère." },
+          { "name": "Direct", "price": 3, "description": "Un espresso double pour les vrais amateurs de café fort." },
+          { "name": "Américain", "price": 2.8, "description": "Un café allongé doux et équilibré, idéal pour une pause prolongée." },
+          { "name": "Nescafé", "price": 3.5, "description": "Classique et réconfortant, pour un goût familier et doux." },
+          { "name": "Chocolat au lait", "price": 3.5, "description": "Un chocolat crémeux préparé avec du lait chaud entier." },
           { "name": "Chocolat chaud", "price": 6, "description": "Riche et fondant, le réconfort absolu pour les journées fraîches." },
           { "name": "Macchiato", "price": 5, "description": "Un espresso tacheté de lait pour une touche de douceur." },
           { "name": "Thé vert (Kyufi)", "price": 3, "description": "Infusion légère et rafraîchissante au parfum oriental." },
@@ -53,7 +63,7 @@
           { "name": "Eau 1L", "price": 2.5, "description": "Eau minérale fraîche en bouteille de 1L." },
           { "name": "Eau 0.5L", "price": 1.5, "description": "Format pratique pour une petite soif." },
           { "name": "Soda", "price": 3, "description": "Coca, Fanta ou Sprite bien frais selon votre envie." },
-          { "name": "Cirtonade fraiche", "price": 3.5, "description": "" }
+          { "name": "Cirtonade fraiche", "price": 3.5, "description": "Limonade fraîche maison, légèrement acidulée et désaltérante." }
         ]
       },
       "Suppléments  (Drinks)": {
@@ -95,6 +105,12 @@
           { "name": "Crevette à la crème", "prices": [16, 21], "description": "Version onctueuse avec sauce crème légère." }
         ]
       },
+      "Suppléments (Sandwich)": {
+        "items": [
+          { "name": "Sauce pesto", "price": 2, "description": "Ajoutez une touche italienne parfumée." },
+          { "name": "Gruyère", "price": 2, "description": "Fromage fondant pour plus de plaisir." }
+        ]
+      },
       "Pizza Napolitaine": {
         "items": [
           { "name": "Marguerite", "prices": [10, 15], "description": "Tomate, mozzarella et basilic – la reine des pizzas." },
@@ -107,10 +123,12 @@
           { "name": "Crevette", "price": 21, "description": "Délicieuse pizza marine aux crevettes grillées." }
         ]
       },
-      "Suppléments (Sandwich)": {
+      "Pates": {
         "items": [
-          { "name": "Sauce pesto", "price": 2, "description": "Ajoutez une touche italienne parfumée." },
-          { "name": "Gruyère", "price": 2, "description": "Fromage fondant pour plus de plaisir." }
+          { "name": "Pâtes Bolognaise", "price": 15, "description": "Pâtes à la sauce bolognaise maison, riches et savoureuses." },
+          { "name": "Poulet Pesto", "price": 16, "description": "Pâtes au poulet grillé et pesto crémeux." },
+          { "name": "Poulet Sauce Blanche", "price": 14, "description": "Pâtes au poulet tendre avec une onctueuse sauce blanche." },
+          { "name": "Crevettes", "price": 17, "description": "Pâtes aux crevettes sautées dans une sauce parfumée." }
         ]
       }
     };
@@ -119,55 +137,51 @@
       const container = document.getElementById('menu-sections');
       for (const [title, data] of Object.entries(localData)) {
         const section = document.createElement('section');
-        section.className = 'menu-section bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl';
+        section.className =
+          'bg-white border border-[#f0cfcf] rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden';
 
         section.innerHTML = `
-        <div class="bg-rose-600 text-white px-6 py-4 flex justify-between items-center cursor-pointer header">
-          <h2 class="text-2xl font-serif font-bold">${title}</h2>
-          <i data-feather="chevron-down" class="w-6 h-6 opacity-80 transition-transform"></i>
-        </div>
-      `;
+          <div class="bg-[#b51a1a] text-white px-6 py-4 flex justify-between items-center cursor-pointer header">
+            <h2 class="text-2xl font-serif font-bold">${title}</h2>
+            <i data-feather="chevron-down" class="w-6 h-6 opacity-80 transition-transform"></i>
+          </div>
+        `;
 
         const content = document.createElement('div');
-        content.className = 'px-6 py-5 content hidden'; // Add 'hidden' initially to collapse sections
+        content.className = 'px-6 py-5 space-y-3 hidden content';
 
-        content.innerHTML = data.items.map(i => {
-          let priceHTML = '';
-          if (i.prices && i.prices.length === 2) {
-            priceHTML = `
-            <div class="flex gap-4 text-right text-rose-700">
-              <div class="flex flex-col items-end">
-                <span class="text-lg font-semibold">${i.prices[0]} DT</span>
-                <span class="text-xs text-rose-500">Petite</span>
-              </div>
-              <div class="flex flex-col items-end">
-                <span class="text-lg font-semibold">${i.prices[1]} DT</span>
-                <span class="text-xs text-rose-500">Grande</span>
-              </div>
-            </div>`;
-          } else {
-            priceHTML = `<span class="text-lg font-semibold text-rose-600">${i.price} DT</span>`;
-          }
+        content.innerHTML = data.items
+          .map(i => {
+            let priceHTML = '';
+            if (i.prices && i.prices.length === 2) {
+              priceHTML = `
+                <div class="flex gap-6 text-[#b23a3a] font-semibold">
+                  <div><span>${i.prices[0]} DT</span> <span class="text-sm text-[#a57171] ml-1">Petite</span></div>
+                  <div><span>${i.prices[1]} DT</span> <span class="text-sm text-[#a57171] ml-1">Grande</span></div>
+                </div>`;
+            } else {
+              priceHTML = `<span class="text-lg font-semibold text-[#b23a3a]">${i.price} DT</span>`;
+            }
 
-          return `
-          <div class="py-4 border-b border-rose-100 last:border-b-0">
-            <div class="flex justify-between items-center">
-              <h3 class="text-xl font-medium text-rose-900">${i.name}</h3>
-              ${priceHTML}
-            </div>
-            <p class="text-rose-700 mt-1 text-sm">${i.description || ''}</p>
-          </div>`;
-        }).join('');
+            return `
+              <div class="flex flex-col border-b border-[#f3d8d8] pb-2">
+                <div class="flex justify-between items-center">
+                  <span class="font-medium text-[#5c1c1c]">${i.name}</span>
+                  ${priceHTML}
+                </div>
+                <p class="text-sm text-[#8a3a3a] mt-1">${i.description}</p>
+              </div>`;
+          })
+          .join('');
 
         section.appendChild(content);
         container.appendChild(section);
 
-        // Add click event listener to the header
         const header = section.querySelector('.header');
         const chevron = header.querySelector('i');
         header.addEventListener('click', () => {
           content.classList.toggle('hidden');
-          chevron.classList.toggle('rotate-180'); // Rotate chevron when toggled
+          chevron.classList.toggle('rotate-180');
         });
       }
       feather.replace();
