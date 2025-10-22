@@ -1,66 +1,63 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Tomate-Cerise</title>
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body class="bg-[#fffaf5] text-[#5c1c1c] font-sans">
-  <main class="container mx-auto px-6 py-12 max-w-5xl">
+  <main class="container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-5xl">
     <!-- Header -->
-    <section class="text-center mb-16">
+    <section class="text-center mb-10 sm:mb-16">
       <div class="flex justify-center mb-4">
-        <img src="images/logo.png" alt="Tomate-Cerise Logo" class="h-20 w-auto drop-shadow-md" />
+        <img src="images/logo.png" alt="Tomate-Cerise Logo" class="h-16 sm:h-20 w-auto drop-shadow-md" />
       </div>
-      <h1 class="text-6xl font-serif font-extrabold text-[#b51a1a] tracking-wide drop-shadow">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-extrabold text-[#b51a1a] tracking-wide drop-shadow">
         Tomate-Cerise
       </h1>
-      <p class="text-lg text-[#b23a3a] mt-2 italic">Savourez l'authenticité !</p>
+      <p class="text-base sm:text-lg text-[#b23a3a] mt-2 italic">Savourez l'authenticité !</p>
     </section>
 
     <!-- Gallery Carousel -->
-    <section class="mb-16">
-      <h2 class="text-3xl font-serif font-bold text-[#b51a1a] text-center mb-8">Notre Ambiance</h2>
+    <section class="mb-10 sm:mb-16">
+      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#b51a1a] text-center mb-6 sm:mb-8">Notre Ambiance</h2>
       <div class="relative">
         <div class="overflow-hidden">
-          <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
-            <div class="relative group min-w-[50%] sm:min-w-[50%] lg:min-w-[33.33%] px-2">
-              <img src="images/food/1.jpg" alt="Café ambiance" class="w-full h-64 object-cover rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105">
+          <div id="carousel" class="flex transition-transform duration-500 ease-in-out touch-pan-x">
+            <div class="relative group min-w-[100%] sm:min-w-[50%] lg:min-w-[33.33%] px-2">
+              <img src="images/food/1.jpg" alt="Café ambiance" class="w-full h-48 sm:h-64 object-cover rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105">
             </div>
-            <div class="relative group min-w-[50%] sm:min-w-[50%] lg:min-w-[33.33%] px-2">
-              <img src="images/food/2.jpg" alt="Crêpes délicieuses" class="w-full h-64 object-cover rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105">
+            <div class="relative group min-w-[100%] sm:min-w-[50%] lg:min-w-[33.33%] px-2">
+              <img src="images/food/2.jpg" alt="Crêpes délicieuses" class="w-full h-48 sm:h-64 object-cover rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105">
             </div>
-            <div class="relative group min-w-[50%] sm:min-w-[50%] lg:min-w-[33.33%] px-2">
-              <img src="images/food/3.jpg" alt="Pizza artisanale" class="w-full h-64 object-cover rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105">
+            <div class="relative group min-w-[100%] sm:min-w-[50%] lg:min-w-[33.33%] px-2">
+              <img src="images/food/3.jpg" alt="Pizza artisanale" class="w-full h-48 sm:h-64 object-cover rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105">
             </div>
-            <div class="relative group min-w-[50%] sm:min-w-[50%] lg:min-w-[33.33%] px-2">
-              <img src="images/food/4.jpg" alt="Pâtes savoureuses" class="w-full h-64 object-cover rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105">
+            <div class="relative group min-w-[100%] sm:min-w-[50%] lg:min-w-[33.33%] px-2">
+              <img src="images/food/4.jpg" alt="Pâtes savoureuses" class="w-full h-48 sm:h-64 object-cover rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105">
             </div>
-            
           </div>
         </div>
-        <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#b51a1a] text-white p-2 rounded-full shadow-md hover:bg-[#8a3a3a] transition-colors">
-          <i data-feather="chevron-left" class="w-6 h-6"></i>
+        <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#b51a1a] text-white p-2 sm:p-3 rounded-full shadow-md hover:bg-[#8a3a3a] transition-colors hidden sm:block">
+          <i data-feather="chevron-left" class="w-5 sm:w-6 h-5 sm:h-6"></i>
         </button>
-        <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#b51a1a] text-white p-2 rounded-full shadow-md hover:bg-[#8a3a3a] transition-colors">
-          <i data-feather="chevron-right" class="w-6 h-6"></i>
+        <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#b51a1a] text-white p-2 sm:p-3 rounded-full shadow-md hover:bg-[#8a3a3a] transition-colors hidden sm:block">
+          <i data-feather="chevron-right" class="w-5 sm:w-6 h-5 sm:h-6"></i>
         </button>
       </div>
     </section>
 
     <!-- Dynamic Menu Sections -->
-    <div id="menu-sections" class="space-y-8"></div>
+    <div id="menu-sections" class="space-y-6 sm:space-y-8"></div>
 
     <!-- Footer -->
-    <footer class="text-center text-[#8a3a3a] mt-16">
-      <p class="text-sm font-medium">Merci de votre visite !</p>
-      <p class="text-sm">À très bientôt chez <span class="font-bold text-[#b51a1a]">Tomate-Cerise 🍅</span></p>
+    <footer class="text-center text-[#8a3a3a] mt-10 sm:mt-16">
+      <p class="text-sm sm:text-base font-medium">Merci de votre visite !</p>
+      <p class="text-sm sm:text-base">À très bientôt chez <span class="font-bold text-[#b51a1a]">Tomate-Cerise 🍅</span></p>
     </footer>
   </main>
 
@@ -79,6 +76,10 @@
           { "name": "Thé vert (Kyufi)", "price": 3, "description": "Infusion légère et rafraîchissante au parfum oriental." },
           { "name": "Thé aux amandes", "price": 5, "description": "Délicieux thé parfumé, adouci par la saveur des amandes." },
           { "name": "Thé aux pignons", "price": 6.5, "description": "Une touche de luxe dans votre tasse avec des pignons croquants." }
+        ],
+        "supplements": [
+          { "name": "Lait concentré", "price": 1.5, "description": "Ajoutez une touche sucrée et crémeuse à votre boisson." },
+          { "name": "Arôme", "price": 1.5, "description": "Choisissez entre vanille, caramel ou noisette." }
         ]
       },
       "Cold Drinks": {
@@ -94,10 +95,8 @@
           { "name": "Eau 0.5L", "price": 1.5, "description": "Format pratique pour une petite soif." },
           { "name": "Soda", "price": 3, "description": "Coca, Fanta ou Sprite bien frais selon votre envie." },
           { "name": "Cirtonade fraiche", "price": 3.5, "description": "Limonade fraîche maison, légèrement acidulée et désaltérante." }
-        ]
-      },
-      "Suppléments  (Drinks)": {
-        "items": [
+        ],
+        "supplements": [
           { "name": "Lait concentré", "price": 1.5, "description": "Ajoutez une touche sucrée et crémeuse à votre boisson." },
           { "name": "Arôme", "price": 1.5, "description": "Choisissez entre vanille, caramel ou noisette." }
         ]
@@ -133,10 +132,8 @@
           { "name": "Crevette grillée", "prices": [14.5, 19.5], "description": "Crevettes grillées et assaisonnées façon méditerranéenne." },
           { "name": "Crevette panée", "prices": [15, 20], "description": "Croustillantes et dorées, servies avec sauce maison." },
           { "name": "Crevette à la crème", "prices": [16, 21], "description": "Version onctueuse avec sauce crème légère." }
-        ]
-      },
-      "Suppléments (Sandwich)": {
-        "items": [
+        ],
+        "supplements": [
           { "name": "Sauce pesto", "price": 2, "description": "Ajoutez une touche italienne parfumée." },
           { "name": "Gruyère", "price": 2, "description": "Fromage fondant pour plus de plaisir." }
         ]
@@ -169,42 +166,64 @@
       for (const [title, data] of Object.entries(localData)) {
         const section = document.createElement('section');
         section.className =
-          'bg-white border border-[#f0cfcf] rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden';
+          'bg-white border border-[#f0cfcf] rounded-2xl sm:rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden';
 
         section.innerHTML = `
-          <div class="bg-[#b51a1a] text-white px-6 py-4 flex justify-between items-center cursor-pointer header">
-            <h2 class="text-2xl font-serif font-bold">${title}</h2>
-            <i data-feather="chevron-down" class="w-6 h-6 opacity-80 transition-transform"></i>
+          <div class="bg-[#b51a1a] text-white px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center cursor-pointer header">
+            <h2 class="text-xl sm:text-2xl font-serif font-bold">${title}</h2>
+            <i data-feather="chevron-down" class="w-5 sm:w-6 h-5 sm:h-6 opacity-80 transition-transform"></i>
           </div>
         `;
 
         const content = document.createElement('div');
-        content.className = 'px-6 py-5 space-y-3 hidden content';
+        content.className = 'px-4 sm:px-6 py-4 sm:py-5 space-y-3 hidden content';
 
-        content.innerHTML = data.items
+        // Main Items
+        let itemsHTML = data.items
           .map(i => {
             let priceHTML = '';
             if (i.prices && i.prices.length === 2) {
               priceHTML = `
-                <div class="flex gap-6 text-[#b23a3a] font-semibold">
-                  <div><span>${i.prices[0]} DT</span> <span class="text-sm text-[#a57171] ml-1">Petite</span></div>
-                  <div><span>${i.prices[1]} DT</span> <span class="text-sm text-[#a57171] ml-1">Grande</span></div>
+                <div class="flex flex-col sm:flex-row sm:gap-6 text-[#b23a3a] font-semibold">
+                  <div><span>${i.prices[0]} DT</span> <span class="text-xs sm:text-sm text-[#a57171] ml-1">Petite</span></div>
+                  <div><span>${i.prices[1]} DT</span> <span class="text-xs sm:text-sm text-[#a57171] ml-1">Grande</span></div>
                 </div>`;
             } else {
-              priceHTML = `<span class="text-lg font-semibold text-[#b23a3a]">${i.price} DT</span>`;
+              priceHTML = `<span class="text-base sm:text-lg font-semibold text-[#b23a3a]">${i.price} DT</span>`;
             }
 
             return `
               <div class="flex flex-col border-b border-[#f3d8d8] pb-2">
-                <div class="flex justify-between items-center">
-                  <span class="font-medium text-[#5c1c1c]">${i.name}</span>
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+                  <span class="font-medium text-[#5c1c1c] text-sm sm:text-base">${i.name}</span>
                   ${priceHTML}
                 </div>
-                <p class="text-sm text-[#8a3a3a] mt-1">${i.description}</p>
+                <p class="text-xs sm:text-sm text-[#8a3a3a] mt-1">${i.description}</p>
               </div>`;
           })
           .join('');
 
+        // Supplements (if available)
+        if (data.supplements && data.supplements.length > 0) {
+          const supplementsHTML = `
+            <div class="bg-[#f9ebeb] rounded-xl p-3 mt-4">
+              <h3 class="text-sm sm:text-base font-semibold text-[#b51a1a] mb-2">Suppléments</h3>
+              ${data.supplements
+                .map(s => `
+                  <div class="flex flex-col border-b border-[#f3d8d8] pb-2 last:border-b-0">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+                      <span class="font-medium text-[#5c1c1c] text-xs sm:text-sm">${s.name}</span>
+                      <span class="text-xs sm:text-sm font-semibold text-[#b23a3a]">${s.price} DT</span>
+                    </div>
+                    <p class="text-xs text-[#8a3a3a] mt-1">${s.description}</p>
+                  </div>`
+                )
+                .join('')}
+            </div>`;
+          itemsHTML += supplementsHTML;
+        }
+
+        content.innerHTML = itemsHTML;
         section.appendChild(content);
         container.appendChild(section);
 
@@ -216,6 +235,7 @@
         });
       }
 
+      // Carousel Logic
       const carousel = document.getElementById('carousel');
       const prevBtn = document.getElementById('prevBtn');
       const nextBtn = document.getElementById('nextBtn');
@@ -224,13 +244,16 @@
       let currentIndex = 0;
 
       function updateCarousel() {
-        const offset = -currentIndex * 50;
+        const isMobile = window.innerWidth < 640;
+        const offset = -currentIndex * (isMobile ? 100 : 50);
         carousel.style.transform = `translateX(${offset}%)`;
       }
 
       nextBtn.addEventListener('click', () => {
-        if (currentIndex < totalItems - 2) {
-          currentIndex += 2;
+        const isMobile = window.innerWidth < 640;
+        const itemsToShow = isMobile ? 1 : 2;
+        if (currentIndex < totalItems - itemsToShow) {
+          currentIndex += itemsToShow;
         } else {
           currentIndex = 0;
         }
@@ -238,18 +261,54 @@
       });
 
       prevBtn.addEventListener('click', () => {
+        const isMobile = window.innerWidth < 640;
+        const itemsToShow = isMobile ? 1 : 2;
         if (currentIndex > 0) {
-          currentIndex -= 2;
+          currentIndex -= itemsToShow;
         } else {
-          currentIndex = totalItems - (totalItems % 2 === 0 ? 2 : 1);
+          currentIndex = totalItems - (totalItems % itemsToShow === 0 ? itemsToShow : 1);
         }
         updateCarousel();
       });
+
+      // Touch Swipe Support
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const swipeDistance = touchEndX - touchStartX;
+        const isMobile = window.innerWidth < 640;
+        const itemsToShow = isMobile ? 1 : 2;
+
+        if (swipeDistance > 50) {
+          // Swipe right (previous)
+          if (currentIndex > 0) {
+            currentIndex -= itemsToShow;
+          } else {
+            currentIndex = totalItems - (totalItems % itemsToShow === 0 ? itemsToShow : 1);
+          }
+        } else if (swipeDistance < -50) {
+          // Swipe left (next)
+          if (currentIndex < totalItems - itemsToShow) {
+            currentIndex += itemsToShow;
+          } else {
+            currentIndex = 0;
+          }
+        }
+        updateCarousel();
+      });
+
+      // Update carousel on window resize
+      window.addEventListener('resize', updateCarousel);
 
       // Initialize Feather Icons
       feather.replace();
     });
   </script>
 </body>
-
 </html>
